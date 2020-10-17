@@ -6,14 +6,14 @@ $reader = new MyAPIReader('https://jsonplaceholder.typicode.com');
 // $reader->executeGet('/5');
 
 
-$jsonData = json_encode([
+$data = [
         'title' => 'my title',
         'body' => 'blah blah blah',
         'userID' => '12345'
-    ]);
+    ];
 
-    
 
-$reader->executePost('/posts', $jsonData);
+
+$reader->executePost('/posts', $data);
 
 ?>

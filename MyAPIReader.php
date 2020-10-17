@@ -36,8 +36,9 @@ class MyAPIReader
                 echo '<pre>' . $data . '</pre>';
             }
             return $response;
-        } 
-        catch (RequestException $e) {
+
+        } catch (RequestException $e) {
+            
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
 
@@ -78,9 +79,26 @@ class MyAPIReader
                 echo '<pre>' . $data . '</pre>';
             }
             return $response;
-        }
-        catch(GuzzleException $e) {
-            var_dump($e);
+
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+
+                echo 'HTTP status code: <br>' . $response->getStatusCode() . '<br>';
+                echo '<br>';
+
+                echo 'Response message: <br>' . $response->getReasonPhrase() . '<br>';
+                echo '<br>';
+
+                echo 'Body: <br>' . $response->getBody() . '<br>';
+                echo '<br>';
+
+                echo 'Headers: <br>';
+                print_r($response->getHeaders()); 
+                echo '<br>';
+
+            }
         }
     }
 
