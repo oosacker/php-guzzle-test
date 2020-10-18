@@ -9,10 +9,13 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <form method="get" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-            <label for="post_num">Enter ID: </label>
-            <input type="text" name="post_num" required> 
-            <input type="submit" name="submit">
+    <h3>Make a GET request</h3>    
+    <form method="get" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+            <fieldset>    
+                <label for="post_num">Post ID: </label>
+                <input type="text" name="post_num" required> 
+                <input type="submit" name="submit">
+            </fieldset>
         </form>
 
         <?php
@@ -32,18 +35,19 @@
 
             } 
         ?>
-
+            <h3>Make a POST request</h3> 
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-                <label for="title">Enter title: </label>
-                <input type="text" name="title" required> 
-
-                <label for="body">Enter body: </label>
-                <input type="text" name="body" required> 
-
-                <label for="userid">Enter userID: </label>
-                <input type="text" name="userid" required> 
-
-                <input type="submit" name="submit">
+                <fieldset>
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" required> 
+                    <br>
+                    <label for="body">Body: </label>
+                    <input type="text" name="body" required> 
+                    <br>
+                    <label for="userid">UserID: </label>
+                    <input type="text" name="userid" required> 
+                    <input type="submit" name="submit">
+                </fieldset>
             </form>
 
         <?php
