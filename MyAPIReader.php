@@ -17,29 +17,36 @@ class MyAPIReader
     
     function executePost($endPoint, $data)
     {
-        try {
+        try 
+        {
             $client = new Client();
             $url = $this->BASE_URL . $endPoint;
+            $array = [];
 
             $response = $client->post($url, [
                 'json' => $data
             ]);
 
-            if(isset($response)) {
+            if(isset($response)) 
+            {
                 $data = json_encode(
                     json_decode(
                         $response
-                        ->getBody()
-                        ->getContents()
+                            ->getBody()
+                            ->getContents()
                     ), 
                     JSON_PRETTY_PRINT);
-                echo '<pre>' . $data . '</pre>';
-            }
-            return $response;
 
-        } catch (RequestException $e) {
-            
-            if ($e->hasResponse()) {
+                echo '<pre>' . $data . '</pre>';
+                $array = json_decode($data, true);
+            }
+            return $array;
+
+        } catch (RequestException $e) 
+        {
+
+            if ($e->hasResponse()) 
+            {
                 $response = $e->getResponse();
 
                 echo 'HTTP status code: <br>' . $response->getStatusCode() . '<br>';
@@ -62,25 +69,30 @@ class MyAPIReader
 
     function executeGet($endPoint)
     {
-        try {
+        try
+        {
             $client = new Client();
             $url = $this->BASE_URL . $endPoint;
             $response = $client->get($url);
+            $array = [];
 
-            if(isset($response)) {
+            if(isset($response)) 
+            {
                 $data = json_encode(
                     json_decode(
                         $response
-                        ->getBody()
-                        ->getContents()
+                            ->getBody()
+                            ->getContents()
                     ), 
                     JSON_PRETTY_PRINT);
 
-                echo '<pre>' . $data . '</pre>';
+                //echo '<pre>' . $data . '</pre>';
+                $array = json_decode($data, true);
             }
-            return $response;
+            return $array;
 
-        } catch (RequestException $e) {
+        } catch (RequestException $e) 
+        {
 
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
@@ -100,12 +112,6 @@ class MyAPIReader
 
             }
         }
-    }
-
-
-    function Main() 
-    {
-        echo API_KEY;
     }
     
 }
